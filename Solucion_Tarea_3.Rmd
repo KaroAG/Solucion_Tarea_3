@@ -1,0 +1,126 @@
+
+---
+title: "Solución Tarea 3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Parte 1: Copiar código
+
+```{r codeSource,echo=TRUE}
+source("./scripts/replicar_reg_scal.R")
+```
+
+## Parte 2: Cálculo de falsos positivos
+
+```{r falsosPositivos, echo=TRUE} 
+
+# Se estandariza la cantidad de iteraciones para el cálculo de falsos positivos
+itr<-1000
+
+# Cálculo de falsos positivos con un número de variaciones de 10
+falsos_positivos1 <- replicar_reg_scal(itr = itr, n = 30, nvars = 10, alfa = 0.05)
+
+# Cálculo de falsos positivos con un número de variaciones de 20
+falsos_positivos2 <- replicar_reg_scal(itr = itr, n = 30, nvars = 20, alfa = 0.05)
+
+# Cálculo de falsos positivos con un número de variaciones de 50
+falsos_positivos3 <- replicar_reg_scal(itr = itr, n = 30, nvars = 50, alfa = 0.05)
+
+# Cálculo de falsos positivos con un número de variaciones de 100
+falsos_positivos4 <- replicar_reg_scal(itr = itr, n = 30, nvars = 100, alfa = 0.05)
+```
+
+#### Resultados de los falsos positivos con diferentes números de variaciones
+
+```{r valoresfalsosPositivos, echo=FALSE, include=TRUE} 
+
+falsos_positivos1
+falsos_positivos2
+falsos_positivos3
+falsos_positivos4
+```
+Resultados respectivos para nvars: 10, 20, 50 y 100
+
+## Parte 3: Gráfico de falsos Positivos
+
+```{r graficofalsosPositivos, echo=TRUE, fig.align='center'}
+
+# Agrupación del número de falsos positivos
+FP<-c(falsos_positivos1, falsos_positivos2, falsos_positivos3, falsos_positivos4)
+
+# Agrupación del número número de variables
+NV<-c(10, 20, 50, 100)
+
+# Gráfico del número de falsos positivos vs el número de variables
+plot(NV,FP)
+
+```
+
+## Parte 4: Cálculo de falsos Positivos variando el valor de alfa
+
+```{r falsosPositivosalfa, echo=TRUE}
+
+# Cálculo de falsos positivos con un número de variaciones de 10 variando el valor de alfa
+falsos_positivos1alfa <- replicar_reg_scal(itr = itr, n = 30, nvars = 10, alfa = 0.01)
+
+# Cálculo de falsos positivos con un número de variaciones de 20 variando el valor de alfa
+falsos_positivos2alfa <- replicar_reg_scal(itr = itr, n = 30, nvars = 20, alfa = 0.01)
+
+# Cálculo de falsos positivos con un número de variaciones de 50 variando el valor de alfa
+falsos_positivos3alfa <- replicar_reg_scal(itr = itr, n = 30, nvars = 50, alfa = 0.01)
+
+# Cálculo de falsos positivos con un número de variaciones de 100 variando el valor de alfa
+falsos_positivos4alfa <- replicar_reg_scal(itr = itr, n = 30, nvars = 100, alfa = 0.01)
+```
+
+#### Resultados de los falsos positivos con diferentes números de variaciones y variando el valor de alfa
+
+```{r valoresfalsosPositivosalfa, echo=FALSE, include=TRUE} 
+
+falsos_positivos1alfa
+falsos_positivos2alfa
+falsos_positivos3alfa
+falsos_positivos4alfa
+```
+
+Resultados respectivos para nvars: 10, 20, 50 y 100
+
+## Parte 5: Gráfico de falsos positivos variando el valor de alfa
+
+```{r graficofalsosPositivosalfa, echo=TRUE, fig.align='center'}
+
+# Agrupación del número de falsos positivos variando el valor de alfa
+FPalfa<-c(falsos_positivos1alfa, falsos_positivos2alfa, falsos_positivos3alfa, falsos_positivos4alfa)
+
+# Agrupación del número número de variables
+NV<-c(10, 20, 50, 100)
+
+# Gráfico del número de falsos positivos vs el número de variables
+plot(NV,FPalfa)
+
+```
+
+## Parte 6: Información de la sesión
+
+```{r InformacionSesion, echo = FALSE, include = TRUE}
+
+sI <- sessionInfo()
+sI
+```
+
+## Parte 7: Imagen
+
+### *Ectophylla alba*
+
+![](EctoAlbaTarea3.jpg)
+
+### *Costasiella kuroshimae*
+![](NudibrachTarea3.jpg)
+
+
+
+
